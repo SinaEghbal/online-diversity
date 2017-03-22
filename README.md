@@ -1,8 +1,8 @@
 # online-diversity
 ## - Fig 1:
   Number of links/time
-  Active species (species that have been referred at least once in the timespan)/time
-  Link uniqueness (# of links/# of linked species)/time
+  * Active species (species that have been referred at least once in the timespan)/time
+  * Link uniqueness (# of links/# of linked species)/time
 ## - Fig 2-b:
   Number of links to each hero (log)/time
   
