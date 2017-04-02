@@ -1,6 +1,6 @@
 #!/usr/bin/Rscript
 
-ds <- c ('reddit', 'twitter_compressed', 'wikilinks')
+ds <- c ('reddit', 'twitter', 'wikilinks')
 
 for (ds_name in ds) {
 	fn_list <- load (sprintf ('data/%s_cohort_analysis.dat', ds_name))
