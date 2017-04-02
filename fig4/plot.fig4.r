@@ -13,7 +13,7 @@ for (ds_name in ds) {
 
 	colors <- unique (rainbow (nrow (HHI_clusters)))
 
-	pdf (sprintf ('fig4_HHI.pdf'))
+	pdf (sprintf ('fig4_a.pdf'))
 	for (row in rownames (HHI_clusters)) {
 		plot (HHI_clusters [row, ], col = colors [which (rownames (HHI_clusters) == row)]
 			  ,xlab = '', ylab = '', xaxt = 'n', ylim = c (0, max_hhi_x), type = 'l')
@@ -31,7 +31,7 @@ for (ds_name in ds) {
 	par (new = FALSE)
 	dev.off ()
 
-	pdf (sprintf ('fig4_Links.pdf'))
+	pdf (sprintf ('fig4_b.pdf'))
 	for (row in rownames (links_clusters)) {
 		plot (links_clusters [row, ], col = colors [which (rownames (links_clusters) == row)]
 			  ,xlab = '', ylab = '', xaxt = 'n', ylim = c (0, max_links_x), type = 'l')
@@ -48,7 +48,8 @@ for (ds_name in ds) {
 	par (new = FALSE)
 	dev.off ()
 
-	pdf (sprintf ('fig4_survival_(1).pdf'))
+	# Here we have looked further and created a death date for the species based on the last time they were linked
+	pdf (sprintf ('fig4_b(1).pdf'))
 	for (row in rownames (survival_clusters)) {
 		plot (survival_clusters [row, ], col = colors [which (rownames (survival_clusters) == row)]
 			  ,xlab = '', ylab = '', xaxt = 'n', ylim = c (0, max_surivival_x), type = 'l')
@@ -83,7 +84,8 @@ for (ds_name in ds) {
 	par (new = FALSE)
 	dev.off ()
 
-	pdf (sprintf ('fig4_survival_(2).pdf'))
+	# No death date assumed. Based on current activities 
+	pdf (sprintf ('fig4_b(2).pdf'))
 	for (row in rownames (survival_clusters2)) {
 		plot (survival_clusters2 [row, ], col = colors [which (rownames (survival_clusters2) == row)]
 			  ,xlab = '', ylab = '', xaxt = 'n', ylim = c (0, max_surivival_x_2), type = 'l')
