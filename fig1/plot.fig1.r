@@ -1,13 +1,13 @@
 fn_list <- load (sprintf ('data/ds_properties.dat'))
 
-pdf ('links.pdf')
+pdf ('fig1-b.pdf')
 max_sum <- max (sapply (sum, as.numeric), na.rm = TRUE)
 plot (unlist (sum ['reddit',]), col = 'red', xaxt = 'n', ylim = c (0, max_sum), ylab = '# of links',
-	  main = 'Links by time', xlab = 'Date')
+	  main = 'Links by time', xlab = 'Date', type = 'l')
 par (new = TRUE)
-plot (unlist (sum ['wikilinks',]), col = 'blue', xaxt = 'n', ylim = c (0, max_sum), ylab = '', xlab = '')
+plot (unlist (sum ['wikilinks',]), col = 'blue', xaxt = 'n', ylim = c (0, max_sum), ylab = '', xlab = '', type = 'l')
 par (new = TRUE)
-plot (unlist (sum ['twitter',]), col = 'green', xaxt = 'n', ylim = c (0, max_sum), ylab = '', xlab = '')
+plot (unlist (sum ['twitter',]), col = 'green', xaxt = 'n', ylim = c (0, max_sum), ylab = '', xlab = '', type = 'l')
 par (new = TRUE)
 axis (side = 1, at = seq (1, length (sum), by = 8), labels = colnames (sum)[seq (1, length (sum), by = 8)], las = 2, cex.axis = 0.7)
 legend("topleft",
@@ -30,7 +30,7 @@ legend("topleft",
 	   col = c ("red", "blue", 'green'))
 dev.off ()
 
-pdf ('uniqueness.pdf')
+pdf ('fig1-d.pdf')
 max_uniqueness <- max (sapply (uniqueness, as.numeric), na.rm = TRUE)
 plot (unlist (uniqueness ['reddit', ]), col = 'red', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = 'Link uniqueness',
 	main = 'Link Uniqueness', xlab = 'Date')
@@ -46,7 +46,7 @@ dev.off ()
 
 
 load ('data/posts-tweets.dat')
-pdf ('no_of_posts.pdf')
+pdf ('fig1-a.pdf')
 max_y <- max (posts, na.rm = TRUE)
 plot (posts [1, ], type = 'l', ylab = '# of Posts-Tweets', xlab = '', xaxt = 'n', col = 'blue', ylim = c (0, max_y + 5))
 par (new = TRUE)

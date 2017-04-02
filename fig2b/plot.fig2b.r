@@ -10,7 +10,7 @@ datasets <- c ('twitter', 'reddit', 'wikilinks')
 for (ds in datasets) {
 	pdf (sprintf ('fig2b-%s.pdf', ds))
 	tables <- ls (pattern = ds)
-	current_dataaset <- data.frame ()
+	# current_dataaset <- data.frame ()
 	rows <- data.frame ()
 	for (table in tables) {
 		current_table <- get (table)
