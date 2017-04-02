@@ -43,3 +43,17 @@ axis (side = 1, at = seq (1, length (uniqueness), by = 8), labels = colnames (un
 legend("topleft", legend=c ("Reddit", "Wiki", "Twitter"), lty= c (1,1,1),
 	   col = c ("red", "blue", 'green'))
 dev.off ()
+
+
+load ('data/posts-tweets.dat')
+pdf ('no_of_posts.pdf')
+max_y <- max (posts, na.rm = TRUE)
+plot (posts [1, ], type = 'l', ylab = '# of Posts-Tweets', xlab = '', xaxt = 'n', col = 'blue', ylim = c (0, max_y + 5))
+par (new = TRUE)
+plot (posts [2, ], type = 'l', ylim = c (0, max_y + 5), col = 'red', ylab = '', yaxt = 'n', xaxt = 'n', xlab = '')
+axis (1, at = seq (1,ncol (posts), by = 5), labels = colnames (posts)[seq (1,ncol (posts), by = 5)], las = 2, xlab = '', cex.axis = 0.7)
+legend("topleft", legend = c ('Tweets', 'Reddit posts'), lty= c (1, 1),
+	   col = c ('blue', 'red'))
+mtext ('Posts - Tweets/Time')
+par (new = FALSE)
+dev.off ()
