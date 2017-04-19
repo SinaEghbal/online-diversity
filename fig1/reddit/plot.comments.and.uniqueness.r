@@ -21,10 +21,17 @@ max_y <- as.numeric (max (as.numeric (reddit ['uniqueness.of.links', ], na.rm = 
 # min_y <- as.numeric (min (as.numeric (reddit ['uniqueness.of.links', ], na.rm = TRUE)))
 plot (reddit ['uniqueness.of.links', ], type = 'l', ylab = 'Links uniqueness (%)', xlab = '', xaxt = 'n', col = 'blue', ylim = c (0, max_y + 5))
 par (new = TRUE)
-plot (reddit ['posts.with.links',], type = 'l', ylim = c (0, max_y + 5), col = 'red', ylab = '', yaxt = 'n', xaxt = 'n', xlab = '')
+# plot (reddit ['posts.with.links',], type = 'l', ylim = c (0, max_y + 5), col = 'red', ylab = '', yaxt = 'n', xaxt = 'n', xlab = '')
 axis (1, at = seq (1,ncol (reddit), by = 5), labels = colnames (reddit)[seq (1,ncol (reddit), by = 5)], las = 2, xlab = '', cex.axis = 0.7)
-legend("topleft", legend = c ('Uniquness (%)', 'Posts with links (%)'), lty= c (1, 1),
-	   col = c ('blue', 'red'))
+legend("topleft", legend = c ('Uniquness (%)'), lty= c (1),
+	   col = c ('blue'))
 mtext ('Link uniqueness/Time - Twitter')
 par (new = FALSE)
+dev.off ()
+
+pdf ('reddit-posts-w-links.pdf')
+columns <- colnames (reddit)
+plot (reddit ['posts.with.links',], type = 'l', xaxt = 'n', col = 'red', ylab = "% of posts w links", xlab = '')
+axis (1, at = seq (1, length (columns), 5), labels = columns [seq (1, length (columns), 5)], las = 2, cex = 0.6)
+mtext ('% of posts with links')
 dev.off ()
