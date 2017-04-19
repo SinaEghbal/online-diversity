@@ -1,4 +1,15 @@
+#!/usr/bin/Rscript
+
 fn_list <- load (sprintf ('data/ds_properties.dat'))
+
+# Let's get rid of some of the abnormalities
+# active ['twitter', '2011-12-15'] = NA
+# active ['twitter', '2011-10-15'] = NA
+# sum ['twitter', '2015-03-15'] = NA
+# sum ['twitter', '2011-09-15'] = NA
+
+# posts [1, '2011-12'] = NA
+# posts [1, '2015-03'] = NA
 
 pdf ('fig1-b.pdf')
 max_sum <- max (sapply (sum, as.numeric), na.rm = TRUE)
@@ -18,11 +29,11 @@ dev.off ()
 pdf ('active_species.pdf')
 max_active <- max (sapply (active, as.numeric), na.rm = TRUE)
 plot (unlist (active ['reddit', ]), col = 'red', xaxt = 'n', ylim = c (0, max_active), ylab = 'active species',
-	  main = 'Active species/time', xlab = 'Date')
+	  main = 'Active species/time', xlab = 'Date', type = 'l')
 par (new = TRUE)
-plot (unlist (active ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_active), ylab = '', xlab = '')
+plot (unlist (active ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_active), ylab = '', xlab = '', type = 'l')
 par (new = TRUE)
-plot (unlist (active ['twitter', ]), col = 'green', xaxt = 'n', ylim = c (0, max_active), ylab = '', xlab = '')
+plot (unlist (active ['twitter', ]), col = 'green', xaxt = 'n', ylim = c (0, max_active), ylab = '', xlab = '', type = 'l')
 par (new = TRUE)
 axis (side = 1, at = seq (1, length (active), by = 8), labels = colnames (active)[seq (1, length (active), by = 8)], las = 2, cex.axis = 0.7)
 legend("topleft",
@@ -33,11 +44,11 @@ dev.off ()
 pdf ('fig1-d.pdf')
 max_uniqueness <- max (sapply (uniqueness, as.numeric), na.rm = TRUE)
 plot (unlist (uniqueness ['reddit', ]), col = 'red', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = 'Link uniqueness',
-	main = 'Link Uniqueness', xlab = 'Date')
+	main = 'Link Uniqueness (# of active domains/# of links)', xlab = 'Date', type = 'l')
 par (new = TRUE)
-plot (unlist (uniqueness ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = '', xlab = '')
+plot (unlist (uniqueness ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = '', xlab = '', type = 'l')
 par (new = TRUE)
-plot (unlist (uniqueness ['twitter', ]), col = 'green', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = '', xlab = '')
+plot (unlist (uniqueness ['twitter', ]), col = 'green', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = '', xlab = '', type = 'l')
 par (new = TRUE)
 axis (side = 1, at = seq (1, length (uniqueness), by = 8), labels = colnames (uniqueness)[seq (1, length (uniqueness), by = 8)], las = 2, cex.axis = 0.7)
 legend("topleft", legend=c ("Reddit", "Wiki", "Twitter"), lty= c (1,1,1),

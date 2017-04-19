@@ -48,23 +48,23 @@ for (ds_name in ds) {
 	par (new = FALSE)
 	dev.off ()
 
-	# Here we have looked further and created a death date for the species based on the last time they were linked
-	pdf (sprintf ('fig4_b(1)_%s.pdf', ds_name))
-	for (row in rownames (survival_clusters)) {
-		plot (survival_clusters [row, ], col = colors [which (rownames (survival_clusters) == row)]
-			  ,xlab = '', ylab = '', xaxt = 'n', ylim = c (0, max_surivival_x), type = 'l')
-		par (new = TRUE)
-	}
-	axis (side = 1, at = seq (1, ncol (survival_clusters), by = 4),
-		  labels = colnames (survival_clusters)[seq (1, ncol (survival_clusters), by = 4)], las = 2, cex.axis = 0.7)
+	# # Here we have looked further and created a death date for the species based on the last time they were linked
+	# pdf (sprintf ('fig4_b(1)_%s.pdf', ds_name))
+	# for (row in rownames (survival_clusters)) {
+	# 	plot (survival_clusters [row, ], col = colors [which (rownames (survival_clusters) == row)]
+	# 		  ,xlab = '', ylab = '', xaxt = 'n', ylim = c (0, max_surivival_x), type = 'l')
+	# 	par (new = TRUE)
+	# }
+	# axis (side = 1, at = seq (1, ncol (survival_clusters), by = 4),
+	# 	  labels = colnames (survival_clusters)[seq (1, ncol (survival_clusters), by = 4)], las = 2, cex.axis = 0.7)
 	
-	legend("topleft", legend = rownames (survival_clusters), lty= rep (nrow (survival_clusters), 1),
-		   col = colors [seq (1, nrow (survival_clusters))])
-	mtext (side = 2, text = 'Survival rate', line = 2.0)
-	mtext (side = 1, text = 'Age (month)', line = 3.5)
-	mtext (sprintf ('Survival over age - %s', ds_name))
-	par (new = FALSE)
-	dev.off ()
+	# legend("topleft", legend = rownames (survival_clusters), lty= rep (nrow (survival_clusters), 1),
+	# 	   col = colors [seq (1, nrow (survival_clusters))])
+	# mtext (side = 2, text = 'Survival rate', line = 2.0)
+	# mtext (side = 1, text = 'Age (month)', line = 3.5)
+	# mtext (sprintf ('Survival over age - %s', ds_name))
+	# par (new = FALSE)
+	# dev.off ()
 
 	pdf (sprintf ('fig4_active_species_%s.pdf', ds_name))
 	for (row in rownames (active_species_clusters)) {
