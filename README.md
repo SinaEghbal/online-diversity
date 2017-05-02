@@ -6,10 +6,8 @@
   * Number of posts/tweets (for twitter and reddit)
   ### Number of comments and link uniqueness plots for reddit added
 
-## - Fig 2-a:
+## - Fig 2:
   * Cumulative function attention for all crunchbase species (log)/time
-
-## - Fig 2-b:
   * Number of links to each hero (log)/time
   
 ## - Fig 4:
