@@ -12,7 +12,7 @@ plot (reddit ['comments.with.links', ], type = 'l', xaxt = 'n', yaxt = 'n', xlab
 axis (1, at = seq (1,ncol (reddit), by = 5), labels = colnames (reddit)[seq (1,ncol (reddit), by = 5)], las = 2, xlab = '', cex.axis = 0.7)
 legend("topleft", legend = c ('total comments', 'comments with links'), lty= c (1, 1),
 	   col = c ('blue', 'red'))
-mtext ('# of Comments/Time - Twitter')
+mtext ('# of Comments/Time - reddit')
 dev.off ()
 
 pdf ('uniqueness.pdf')
@@ -25,7 +25,7 @@ par (new = TRUE)
 axis (1, at = seq (1,ncol (reddit), by = 5), labels = colnames (reddit)[seq (1,ncol (reddit), by = 5)], las = 2, xlab = '', cex.axis = 0.7)
 legend("topleft", legend = c ('Uniquness (%)'), lty= c (1),
 	   col = c ('blue'))
-mtext ('Link uniqueness/Time - Twitter')
+mtext ('Link uniqueness/Time - reddit')
 par (new = FALSE)
 dev.off ()
 
@@ -33,5 +33,5 @@ pdf ('reddit-posts-w-links.pdf')
 columns <- colnames (reddit)
 plot (reddit ['posts.with.links',], type = 'l', xaxt = 'n', col = 'red', ylab = "% of posts w links", xlab = '')
 axis (1, at = seq (1, length (columns), 5), labels = columns [seq (1, length (columns), 5)], las = 2, cex = 0.6)
-mtext ('% of posts with links')
+mtext ('% of posts with links - reddit')
 dev.off ()
