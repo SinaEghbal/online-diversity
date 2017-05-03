@@ -58,7 +58,7 @@ for (ds in datasets) {
 	colors <- unique (rainbow (end.index - begin.index + 1))
 	tbl<- t (t (rows [,2:ncol (rows)]))
 	tbl [which (tbl == 0)] = tbl [which (tbl == 0)] + 0.0001
-	bp <- barplot (tbl, xaxt = 'n', main = sprintf ('Functions growth - %s', ds)
+	bp <- barplot (tbl, xaxt = 'n', main = sprintf ('Heros\'s growth - %s', ds)
 				   , ylab = '# of links (log)', col = colors) #, log = 'y'
 	legend ("topleft", legend = unlist (rows ['Company.Name']), cex = 0.4, col = colors, lty = 1, bg = 'transparent')
 	axis (side = 1, at = bp [seq (1, end.index - begin.index + 1, by = 3)],
