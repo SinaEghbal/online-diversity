@@ -38,7 +38,7 @@ for (ds_name in ds) {
 	axis (side = 1, at = seq (1, ncol (HHI_clusters), by = 4),
 		  labels = colnames (HHI_clusters)[seq (1, ncol (HHI_clusters), by = 4)], las = 2, cex.axis = 0.7)
 	
-	legend("topleft", legend = rownames (HHI_clusters), lty= rep (nrow (HHI_clusters), 1),
+	legend("topleft", legend = rownames (HHI_clusters), lty = 1, #rep (nrow (HHI_clusters), 1),
 		   col = colors [seq (1, nrow (HHI_clusters))])
 	mtext (side = 2, text = 'HHI', line = 2.0)
 	mtext (side = 1, text = 'Age (month)', line = 3.5)
@@ -60,7 +60,7 @@ for (ds_name in ds) {
 	axis (side = 1, at = seq (1, ncol (links_clusters), by = 4),
 		  labels = colnames (links_clusters)[seq (1, ncol (links_clusters), by = 4)], las = 2, cex.axis = 0.7)
 	
-	legend("topleft", legend = rownames (links_clusters), lty= rep (nrow (links_clusters), 1),
+	legend("topleft", legend = rownames (links_clusters), lty = 1, # rep (nrow (links_clusters), 1),
 		   col = colors [seq (1, nrow (links_clusters))])
 	mtext (side = 2, text = 'Links', line = 2.0)
 	mtext (side = 1, text = 'Age (month)', line = 3.5)
@@ -101,7 +101,7 @@ for (ds_name in ds) {
 	axis (side = 1, at = seq (1, ncol (active_species_clusters), by = 4),
 		  labels = colnames (active_species_clusters)[seq (1, ncol (active_species_clusters), by = 4)], las = 2, cex.axis = 0.7)
 	
-	legend("topleft", legend = rownames (active_species_clusters), lty= rep (nrow (active_species_clusters), 1),
+	legend("topleft", legend = rownames (active_species_clusters), lty = 1, #rep (nrow (active_species_clusters), 0),
 		   col = colors [seq (1, nrow (active_species_clusters))])
 	mtext (side = 2, text = 'Active species', line = 2.0)
 	mtext (side = 1, text = 'Age (month)', line = 3.5)
@@ -123,7 +123,7 @@ for (ds_name in ds) {
 	axis (side = 1, at = seq (1, ncol (survival_clusters2), by = 4),
 		  labels = colnames (survival_clusters2)[seq (1, ncol (survival_clusters2), by = 4)], las = 2, cex.axis = 0.7)
 	
-	legend("topleft", legend = rownames (survival_clusters2), lty= rep (nrow (survival_clusters2), 1),
+	legend("topleft", legend = rownames (survival_clusters2), lty= 1, #rep (nrow (survival_clusters2), 1),
 		   col = colors [seq (1, nrow (survival_clusters2))])
 	mtext (side = 2, text = 'Survival rate (V2.0)', line = 2.0)
 	mtext (side = 1, text = 'Age (month)', line = 3.5)
