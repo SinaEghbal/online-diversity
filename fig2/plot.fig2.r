@@ -25,7 +25,7 @@ for (ds in datasets) {
 	tbl<- t (t (current_table))
 	tbl [which (tbl == 0)] = tbl [which (tbl == 0)] + 0.0001
 	bp <- barplot (tbl, xaxt = 'n', main = sprintf ('Cumulative attention - %s', ds)
-				   , ylab = '# of links (log)', col = colors, log = 'y')
+				   , ylab = '# of links (log)', col = colors) #, log = 'y'
 	legend ("topleft", legend = unlist (rownames (current_table)), cex = 0.4, col = colors, lty = 1, bg = 'transparent')
 	axis (side = 1, at = bp [seq (1, end.index - begin.index + 1, by = 3)],
 		  labels = column [seq (begin.index, end.index, by = 3)], las = 2, cex.axis = 0.7)
@@ -59,7 +59,7 @@ for (ds in datasets) {
 	tbl<- t (t (rows [,2:ncol (rows)]))
 	tbl [which (tbl == 0)] = tbl [which (tbl == 0)] + 0.0001
 	bp <- barplot (tbl, xaxt = 'n', main = sprintf ('Functions growth - %s', ds)
-				   , ylab = '# of links (log)', col = colors, log = 'y')
+				   , ylab = '# of links (log)', col = colors) #, log = 'y'
 	legend ("topleft", legend = unlist (rows ['Company.Name']), cex = 0.4, col = colors, lty = 1, bg = 'transparent')
 	axis (side = 1, at = bp [seq (1, end.index - begin.index + 1, by = 3)],
 		  labels = column [seq (begin.index, end.index, by = 3)], las = 2, cex.axis = 0.7)
