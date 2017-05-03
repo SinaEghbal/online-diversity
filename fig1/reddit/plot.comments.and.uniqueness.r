@@ -29,9 +29,17 @@ mtext ('Link uniqueness/Time - reddit')
 par (new = FALSE)
 dev.off ()
 
+
+x_reddit <- seq (1, length (reddit ['posts.with.links', ]))# which (!is.na (links ['reddit', ]))# which (!is.na (links ['reddit',]))
+fit_linked_posts_reddit <- lm (unlist (reddit ['posts.with.links', ], use.names = FALSE)~poly(x_reddit,2,raw=TRUE))
+
 pdf ('reddit-posts-w-links.pdf')
 columns <- colnames (reddit)
 plot (reddit ['posts.with.links',], type = 'l', xaxt = 'n', col = 'red', ylab = "% of posts w links", xlab = '')
+points (x_reddit, predict (fit_linked_posts_reddit, data.frame (x = x_reddit)), col = 'red', pch = '.')
 axis (1, at = seq (1, length (columns), 5), labels = columns [seq (1, length (columns), 5)], las = 2, cex = 0.6)
-mtext ('% of posts with links - reddit')
+legend("topleft", legend = c ('# of posts with links', 'prediction model'), lty= c (1, 3),
+	   col = c ('red', 'red'))
+
+mtext ('# of posts with links - reddit')
 dev.off ()
