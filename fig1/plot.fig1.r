@@ -55,7 +55,7 @@ fit_domains_twitter <- lm (unlist (domains ['twitter',], use.names = FALSE)~poly
 pdf ('fig1-c.pdf')
 max_domains <- max (sapply (domains, as.numeric), na.rm = TRUE)
 plot (unlist (domains ['reddit', ]), col = 'red', xaxt = 'n', ylim = c (0, max_domains), ylab = '# of domains',
-	  main = 'domains species/time', xlab = 'Date', type = 'l')
+	  main = 'Active domains species/time', xlab = 'Date', type = 'l')
 points (x_reddit, predict (fit_domains_reddit, data.frame (x = x_reddit)), col = 'red', pch = '.')
 par (new = TRUE)
 plot (unlist (domains ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_domains), ylab = '', xlab = '', type = 'l')
@@ -97,7 +97,6 @@ axis (side = 1, at = seq (1, length (uniqueness), by = 8), labels = colnames (un
 legend("topleft", legend=c ("Reddit", "Wiki", "Twitter"), lty= c (1,1,1),
 	   col = c ("red", "blue", 'green'))
 dev.off ()
-rm (list = ls ())
 
 load ('data/posts-tweets.dat')
 posts [1, '2011-12'] = NA
@@ -123,3 +122,22 @@ legend("topleft", legend = c ('Tweets', 'Reddit posts'), lty= c (1, 1),
 mtext ('Posts - Tweets/Time')
 par (new = FALSE)
 dev.off ()
+
+## and now for fig1-e: ratio of links to posts (ratio of linked posts)
+posts <- as.data.frame(posts)
+
+## now, posts seems to be shorter than links (because of Wikipedia having two more data points at the end). Align them
+which_links <- format(as.Date(names(links)), "%Y-%m") %in% names(posts) 
+## and compute the link ratio
+link_ratio <- links[c('twitter', 'reddit'), which_links] / posts
+
+pdf ('fig1-e.pdf')
+
+matplot(t(link_ratio), type = "l", col = c('blue', 'red'), lty = c(1, 1), xlab = '', xaxt = 'n', ylab = "Linked percentage" )
+axis (1, at = seq (1, ncol(link_ratio), by = 5), labels = colnames (link_ratio)[seq (1,ncol (link_ratio), by = 5)], las = 2, xlab = '', cex.axis = 0.7)
+legend("topleft", legend = c ('Tweets', 'Reddit posts'), lty= c (1, 1),
+       col = c ('blue', 'red'), bty = "n")
+mtext ('Percentage of linked posts/tweets')
+
+dev.off ()
+
