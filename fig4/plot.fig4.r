@@ -26,7 +26,11 @@ for (ds_name in ds) {
 	fn_list <- load (sprintf ('data/%s_cohort_analysis.dat', ds_name))
 	print (fn_list)
 	print (ls ())
-	colors = unique (rainbow (nrow (HHI_clusters)))
+	# Make sure you're not reassigning 'colors' in case it covers our largest set of cohorts
+	new_colors = unique (rainbow (nrow (HHI_clusters)))
+	if (length (colors) < length (new_colors)) {
+		colors = new_colors
+	}
 	max_hhi_x <- max (HHI_clusters, na.rm = TRUE)
 
 
