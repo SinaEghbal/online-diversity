@@ -19,3 +19,19 @@
   * Active species/age
   * HHI/age -- The peak around the 37th month represents the time where the domains "youtu.be" and "amzn.com" have high market shares. This can be read in the top_names table within "reddit_cohort_analysis.dat".
   * Survival (V2; # of active domains born in the timespan/# of domains born in the timespan)/age
+
+#### To generate the data tables for each figure, we can follow the below instructions:
+- Fig 1:
+  + scripts/extract_dataset_properties.r
+
+- Fig 2:
+  + scripts/join_data.r
+  + scripts/analyse.r
+  + scripts/plot.fig2a.r
+  + scripts/draw.r //shortlist = TRUE
+
+- Fig 3:
+  + scripts/draw.r //shortlist = FALSE
+
+- Fig 4:
+  + scripts/temporal_analysis.r

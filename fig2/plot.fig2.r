@@ -25,7 +25,7 @@ for (ds in datasets) {
 	tbl<- t (t (current_table))
 	tbl [which (tbl == 0)] = tbl [which (tbl == 0)] + 0.0001
 	bp <- barplot (tbl, xaxt = 'n', main = sprintf ('Cumulative attention - %s', ds)
-				   , ylab = '# of links (log)', col = colors) #, log = 'y'
+				   , ylab = '# of links', col = colors) #, log = 'y'
 	legend ("topleft", legend = unlist (rownames (current_table)), cex = 0.4, col = colors, lty = 1, bg = 'transparent')
 	axis (side = 1, at = bp [seq (1, end.index - begin.index + 1, by = 3)],
 		  labels = column [seq (begin.index, end.index, by = 3)], las = 2, cex.axis = 0.7)
@@ -42,11 +42,11 @@ datasets <- c ('twitter', 'reddit', 'wikilinks')
 pdf ('fig2b.pdf')
 for (ds in datasets) {
 	tables <- ls (pattern = ds)
-	# current_dataaset <- data.frame ()
 	rows <- data.frame ()
 	for (table in tables) {
 		current_table <- get (table)
-		rows <- rbind (rows, current_table [, ])
+		rows <- rbind (rows, current_table 
+					   [1 : which (rownames (current_table) == 'total_links') - 1, ])
 	}
 	column <- as.Date (colnames (current_table), DATE_AS_COLNAME)
 	begin.index <- which (!is.na (column))[1]
@@ -59,8 +59,9 @@ for (ds in datasets) {
 	tbl<- t (t (rows [,2:ncol (rows)]))
 	tbl [which (tbl == 0)] = tbl [which (tbl == 0)] + 0.0001
 	bp <- barplot (tbl, xaxt = 'n', main = sprintf ('Heros\'s growth - %s', ds)
-				   , ylab = '# of links (log)', col = colors) #, log = 'y'
-	legend ("topleft", legend = unlist (rows ['Company.Name']), cex = 0.4, col = colors, lty = 1, bg = 'transparent')
+				   , ylab = '# of links', col = colors) #, log = 'y'
+	legend ("topleft", legend = unlist (rows ['Company.Name']), cex = 0.4, col = colors,
+		lty = 1, bg = 'transparent')
 	axis (side = 1, at = bp [seq (1, end.index - begin.index + 1, by = 3)],
 		  labels = column [seq (begin.index, end.index, by = 3)], las = 2, cex.axis = 0.7)
 }
