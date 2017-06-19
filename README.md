@@ -23,7 +23,7 @@
 #### To generate the data tables for each figure, we can follow the below instructions:
 - Fig 1:
   + scripts/extract_dataset_properties.r
-
+  + scripts/plot_volume_time.r
 - Fig 2:
   + scripts/join_data.r
   + scripts/analyse.r

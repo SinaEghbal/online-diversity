@@ -10,16 +10,16 @@ domains ['twitter', '2011-10-15'] = NA
 links ['twitter', '2015-03-15'] = NA
 links ['twitter', '2011-09-15'] = NA
 
-# Get rid of abnormal data
-domains ['wikilinks', colnames (domains) < 2010] = NA
-links ['wikilinks', colnames (domains) < 2010] = NA
-uniqueness ['wikilinks', colnames (domains) < 2010] = NA
+# # Get rid of abnormal data
+# domains ['wikilinks', colnames (domains) < 2010] = NA
+# links ['wikilinks', colnames (domains) < 2010] = NA
+# uniqueness ['wikilinks', colnames (domains) < 2010] = NA
 
 # Let's fit the data to a quadratic curve
 x_reddit <- seq (1, length (links ['reddit', ]))# which (!is.na (links ['reddit', ]))# which (!is.na (links ['reddit',]))
 fit_links_reddit <- lm (unlist (links ['reddit',], use.names = FALSE)~poly(x_reddit,2,raw=TRUE))
-x_wiki <- seq (1, length (links ['wikilinks', ])) #which (!is.na (links ['wikilinks',]))
-fit_links_wikilinks <- lm (unlist (links ['wikilinks',], use.names = FALSE)~poly(x_wiki,2,raw=TRUE))
+# x_wiki <- seq (1, length (links ['wikilinks', ])) #which (!is.na (links ['wikilinks',]))
+# fit_links_wikilinks <- lm (unlist (links ['wikilinks',], use.names = FALSE)~poly(x_wiki,2,raw=TRUE))
 x_twitter <- seq (1, length (links ['twitter', ]))# which (!is.na (links ['twitter',]))
 fit_links_twitter <- lm (unlist (links ['twitter',], use.names = FALSE)~poly(x_twitter,2,raw=TRUE))
 
@@ -31,24 +31,24 @@ plot (unlist (links ['reddit',]), col = 'red', xaxt = 'n', ylim = c (0, max_link
 # print (length (predict (fit_links_reddit, data.frame (x = x_reddit))))
 points (x_reddit, predict (fit_links_reddit, data.frame (x = x_reddit)), col = 'red', pch = '.')
 par (new = TRUE)
-plot (unlist (links ['wikilinks',]), col = 'blue', xaxt = 'n', ylim = c (0, max_links), ylab = '', xlab = '', type = 'l')
-points (x_wiki, predict (fit_links_wikilinks, data.frame (x = x_wiki)), col = 'blue', pch = '.')
-par (new = TRUE)
+# plot (unlist (links ['wikilinks',]), col = 'blue', xaxt = 'n', ylim = c (0, max_links), ylab = '', xlab = '', type = 'l')
+# points (x_wiki, predict (fit_links_wikilinks, data.frame (x = x_wiki)), col = 'blue', pch = '.')
+# par (new = TRUE)
 plot (unlist (links ['twitter',]), col = 'green', xaxt = 'n', ylim = c (0, max_links), ylab = '', xlab = '', type = 'l')
 points (x_twitter, predict (fit_links_twitter, data.frame (x = x_twitter)), col = 'green', pch = '.')
 par (new = TRUE)
 axis (side = 1, at = seq (1, length (links), by = 8), labels = colnames (links)[seq (1, length (links), by = 8)], las = 2, cex.axis = 0.7)
 legend("topleft",
-	   legend=c ("Reddit", "Wiki", "Twitter"), lty= c (1,1,1),
-	   col = c ("red", "blue", 'green'))
+	   legend=c ("Reddit", "Twitter"), lty= c (1,1,1),
+	   col = c ("red", 'green'))
 dev.off ()
 
 
 # Let's fit the data to a quadratic curve
 x_reddit <- seq (1, length (domains ['reddit', ]))# which (!is.na (links ['reddit', ]))# which (!is.na (links ['reddit',]))
 fit_domains_reddit <- lm (unlist (domains ['reddit',], use.names = FALSE)~poly(x_reddit,2,raw=TRUE))
-x_wiki <- seq (1, length (domains ['wikilinks', ])) #which (!is.na (links ['wikilinks',]))
-fit_domains_wikilinks <- lm (unlist (domains ['wikilinks',], use.names = FALSE)~poly(x_wiki,2,raw=TRUE))
+# x_wiki <- seq (1, length (domains ['wikilinks', ])) #which (!is.na (links ['wikilinks',]))
+# fit_domains_wikilinks <- lm (unlist (domains ['wikilinks',], use.names = FALSE)~poly(x_wiki,2,raw=TRUE))
 x_twitter <- seq (1, length (domains ['twitter', ]))# which (!is.na (links ['twitter',]))
 fit_domains_twitter <- lm (unlist (domains ['twitter',], use.names = FALSE)~poly(x_twitter,2,raw=TRUE))
 
@@ -58,23 +58,23 @@ plot (unlist (domains ['reddit', ]), col = 'red', xaxt = 'n', ylim = c (0, max_d
 	  main = 'Active domains species/time', xlab = 'Date', type = 'l')
 points (x_reddit, predict (fit_domains_reddit, data.frame (x = x_reddit)), col = 'red', pch = '.')
 par (new = TRUE)
-plot (unlist (domains ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_domains), ylab = '', xlab = '', type = 'l')
-points (x_wiki, predict (fit_domains_wikilinks, data.frame (x = x_wiki)), col = 'blue', pch = '.')
-par (new = TRUE)
+# plot (unlist (domains ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_domains), ylab = '', xlab = '', type = 'l')
+# points (x_wiki, predict (fit_domains_wikilinks, data.frame (x = x_wiki)), col = 'blue', pch = '.')
+# par (new = TRUE)
 plot (unlist (domains ['twitter', ]), col = 'green', xaxt = 'n', ylim = c (0, max_domains), ylab = '', xlab = '', type = 'l')
 points (x_twitter, predict (fit_domains_twitter, data.frame (x = x_twitter)), col = 'green', pch = '.')
 par (new = TRUE)
 axis (side = 1, at = seq (1, length (domains), by = 8), labels = colnames (domains)[seq (1, length (domains), by = 8)], las = 2, cex.axis = 0.7)
 legend("topleft",
-	   legend=c ("Reddit", "Wiki", "Twitter"), lty= c (1,1,1),
-	   col = c ("red", "blue", 'green'))
+	   legend=c ("Reddit", "Twitter"), lty= c (1,1,1),
+	   col = c ("red", 'green'))
 dev.off ()
 
 # Let's fit the data to a quadratic curve
 x_reddit <- seq (1, length (uniqueness ['reddit', ]))# which (!is.na (links ['reddit', ]))# which (!is.na (links ['reddit',]))
 fit_uniqueness_reddit <- lm (unlist (uniqueness ['reddit',], use.names = FALSE)~poly(x_reddit,2,raw=TRUE))
-x_wiki <- seq (1, length (uniqueness ['wikilinks', ])) #which (!is.na (links ['wikilinks',]))
-fit_uniqueness_wikilinks <- lm (unlist (uniqueness ['wikilinks',], use.names = FALSE)~poly(x_wiki,2,raw=TRUE))
+# x_wiki <- seq (1, length (uniqueness ['wikilinks', ])) #which (!is.na (links ['wikilinks',]))
+# fit_uniqueness_wikilinks <- lm (unlist (uniqueness ['wikilinks',], use.names = FALSE)~poly(x_wiki,2,raw=TRUE))
 x_twitter <- seq (1, length (uniqueness ['twitter', ]))# which (!is.na (links ['twitter',]))
 fit_uniqueness_twitter <- lm (unlist (uniqueness ['twitter',], use.names = FALSE)~poly(x_twitter,2,raw=TRUE))
 
@@ -84,9 +84,9 @@ plot (unlist (uniqueness ['reddit', ]), col = 'red', xaxt = 'n', ylim = c (0, ma
 	main = 'Link Uniqueness (# of domains domains/# of links)', xlab = 'Date', type = 'l')
 points (x_reddit, predict (fit_uniqueness_reddit, data.frame (x = x_reddit)), col = 'red', pch = '.')
 
-par (new = TRUE)
-plot (unlist (uniqueness ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = '', xlab = '', type = 'l')
-points (x_wiki, predict (fit_uniqueness_wikilinks, data.frame (x = x_wiki)), col = 'blue', pch = '.')
+# par (new = TRUE)
+# plot (unlist (uniqueness ['wikilinks', ]), col = 'blue', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = '', xlab = '', type = 'l')
+# points (x_wiki, predict (fit_uniqueness_wikilinks, data.frame (x = x_wiki)), col = 'blue', pch = '.')
 
 par (new = TRUE)
 plot (unlist (uniqueness ['twitter', ]), col = 'green', xaxt = 'n', ylim = c (0, max_uniqueness), ylab = '', xlab = '', type = 'l')
@@ -94,8 +94,8 @@ points (x_twitter, predict (fit_uniqueness_twitter, data.frame (x = x_twitter)),
 
 par (new = TRUE)
 axis (side = 1, at = seq (1, length (uniqueness), by = 8), labels = colnames (uniqueness)[seq (1, length (uniqueness), by = 8)], las = 2, cex.axis = 0.7)
-legend("topleft", legend=c ("Reddit", "Wiki", "Twitter"), lty= c (1,1,1),
-	   col = c ("red", "blue", 'green'))
+legend("topleft", legend=c ("Reddit", "Twitter"), lty= c (1,1,1),
+	   col = c ("red", 'green'))
 dev.off ()
 
 load ('data/posts-tweets.dat')

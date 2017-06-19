@@ -1,4 +1,4 @@
-#!/bin/bash/Rscript
+#!/usr/bin/Rscript
 
 load ('data/cumulative_attention.dat')
 
@@ -9,7 +9,7 @@ rm (list = ls ())
 DATE_AS_COLNAME <- '%Y-%m-%d'
 load ('data/cumulative_attention.dat')
 
-datasets <- c ('twitter', 'reddit', 'wikilinks')
+datasets <- c ('twitter', 'reddit') #, 'wikilinks')
 
 pdf ('fig2a.pdf')
 for (ds in datasets) {
@@ -37,7 +37,7 @@ rm (list = ls ())
 DATE_AS_COLNAME <- 'X%Y.%m.%d'
 load ('data/heros_merged.dat')
 
-datasets <- c ('twitter', 'reddit', 'wikilinks')
+datasets <- c ('twitter', 'reddit') #, 'wikilinks')
 
 pdf ('fig2b.pdf')
 for (ds in datasets) {
