@@ -95,3 +95,8 @@ pdf ('file_sharing_reddit.pdf')
 load ('data/top.n.players_file_sharing.dat')
 plot.top.n.players (top_n_players, 'file_sharing_reddit')
 dev.off ()
+
+pdf ('music_reddit.pdf')
+load ('data/top.n.players_music.dat')
+plot.top.n.players (top_n_players, 'music_reddit')
+dev.off ()
