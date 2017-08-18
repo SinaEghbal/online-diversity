@@ -109,6 +109,7 @@ col.lots <- function(n) {
 }
 
 get_colors<- function(x) {
+  x <- unlist(x)
   cols <- col.lots(length(x))
   names(cols) <- x
   cols
