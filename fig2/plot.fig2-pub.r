@@ -46,8 +46,7 @@ groups <- split(competitors, competitors[["Category"]])
 all(sort(unique(names(data[[1]]), names(data[[2]]))) %in% competitors[["Company"]])
 
 # colors for each group
-colors <- col.lots(length(names(groups)))
-names(colors) <- names(groups)
+colors <- get_colors(names(groups))
 
 # do for each dataset
 for (ds in datasets) {
@@ -72,7 +71,7 @@ for (ds in datasets) {
 		text(x=ymd("2016-06-01"), y=r$y[length(r$y)], labels = v, col = colors[v], las=1, cex=0.6, pos=4, xpd=NA)
 	}
 
-	mtext(sprintf("Links (per month)", ds), 2, cex=1.2, line=3)
+	mtext("Links (per month)", 2, cex=1.2, line=3)
 	mtext("Year", 1, cex=1.2, line=3)
 	dev.off ()
 }

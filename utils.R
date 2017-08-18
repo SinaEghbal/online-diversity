@@ -108,6 +108,12 @@ col.lots <- function(n) {
                 "#9D641E", "#59A2BB", "#7A3660", "#64C32A")[seq_len(n)]
 }
 
+get_colors<- function(x) {
+  cols <- col.lots(length(x))
+  names(cols) <- x
+  cols
+}
+
 lines_rolling_mean <- function(x, y, n,...){
   yr <- roll_mean(y, n=n)
   xr <- roll_mean(x, n=n)
