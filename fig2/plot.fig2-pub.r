@@ -76,3 +76,14 @@ for (ds in datasets) {
 	dev.off ()
 }
 
+# Save table for paper
+
+library(xtable)
+
+print(xtable(competitors[, c("Category", "Website", "Company", "Year")]),
+				file = "table.tex"
+        , sanitize.text.function=I
+        , include.rownames = FALSE
+        , include.colnames = TRUE,
+        only.contents=TRUE)
+
