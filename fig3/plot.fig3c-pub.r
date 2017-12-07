@@ -25,6 +25,36 @@ plot.HHI <- function (table_name, color, add=FALSE) {
 	lines (dates, values, type = 'l', col = color)
 }
 
+
+plot.uniqueness <- function (top_n_players, table_name, col, add=FALSE) {
+	companies <- top_n_players [, 'Company.Name']
+	companies <- gsub(" (F)", "", companies, fixed=TRUE)
+	companies <- gsub(" (S)", "", companies, fixed=TRUE)
+
+	index <- names(companies)
+	colors <-  get_colors(index)
+
+	y <- as.data.frame(t(top_n_players [, 2: ncol (top_n_players)]), stringsAsFactors = FALSE)
+	for(i in seq_len(ncol(y))) {
+		y[[i]] <- as.numeric(y[[i]])
+	}
+	x <- ymd(rownames(y))
+
+	if(!add){
+	plot(x, rep(1, length(x)), type='n', log="",
+					 xlab = '', xaxs="i",
+					 ylim=c(0, 1), xlim= ymd(c("2006-01-01","2016-06-01")), ylab = '')
+	}
+	lines(x, ncol(y)/rowSums(y), col = col, lwd=1)
+#	r <- lines_rolling_mean(x, rowSums(y), n=3, col = colors[v], lwd=1)
+}
+
+load ('data/top.n.players_music.dat')
+plot.uniqueness (top_n_players, 'music_reddit', "red")
+plot.uniqueness (top_n_players, 'music_twitter', "blue", TRUE)
+
+
+
 plot.top.n.players <- function (top_n_players, table_name) {
 	companies <- top_n_players [, 'Company.Name']
 	companies <- gsub(" (F)", "", companies, fixed=TRUE)
